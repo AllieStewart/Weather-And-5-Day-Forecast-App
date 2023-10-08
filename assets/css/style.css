@@ -18,5 +18,9 @@ h1 {
     letter-spacing: 5px;
 }
 
+h2 {
+    font-size: 250%;
+}
+
 /* potentially include: */
 /* classes, ids, other selectors, buttons */
