@@ -28,5 +28,10 @@ ul {
     word-spacing: 5px;
 }
 
+h3 {
+    font-size: 200%;
+    font-weight: 400;
+}
+
 /* potentially include: */
 /* classes, ids, other selectors, buttons */
