@@ -33,21 +33,27 @@
         <div class="container-fluid">
             <div class="row">
 
-        <form>
-            <div class="col">
-                <h2>Search for a city:</h2>
-                <input type="text" class="form-control my-1 p-2" placeholder="Dallas">
-              </div>
+              <form>
+                <div class="col">
+                  <h2>Search for a city:</h2>
+                    <input type="text" class="form-control my-1 p-2" placeholder="Dallas">
+                </div>
               <div class="col-auto my-1 p-2">
                 <button type="search" class="btn btn-primary btn-block">Search</button>
               </div>
-        </form>
+              <p>Search history template</p>
+              <ul>
+                <!-- Add class to differentiate from Large city/date/icon bordered box -->
+                <li>Searched cities</li>
+              </ul>
+              </form>
+
 
         <!-- White box with black border -->
         <!-- Middle + right, "City name", "Date", "Weather Icon" -->
         <!-- Column below ^ "Temp: F" "Wind: MPH" "Humidity: %"-->
         <div class="col">
-            <div class="col-9 border border-dark">
+            <div class="col-12 border border-dark">
                 <div class="row">
                     <ul class="list-inline font-weight-bold">
                         <li class="list-inline-item">City</li>
@@ -66,18 +72,17 @@
         <!-- 5 boxes, navy blue, info in column: -->
         <!-- Date, Weather icon, Temp: F, Wind: MPH, Humidity: % -->
         <div class="row">
-            <div class="col">
-            <p>Search history template</p>
-            </div>
 
             <div class="col">
-                <h3 class="text-left">5-Day Forecast:</h3>
+                <h3 class="text-center">5-Day Forecast:</h3>
             </div>
 
-                <div class="row">
+            
+            <div class="container-fluid">
+                <div class="row mt-0">
 
                     <div class="col-2">
-                        <div class="card" style="width: 18rem;">
+                        <div class="card w-100" style="width: 18rem;">
                             <img class="card-img-top" src="..." alt="Card image cap">
                             <div class="card-body">
                               <h5 class="card-title">Card title</h5>
@@ -87,7 +92,7 @@
                     </div>
 
                     <div class="col-2">
-                          <div class="card" style="width: 18rem;">
+                          <div class="card w-100" style="width: 18rem;">
                             <img class="card-img-top" src="..." alt="Card image cap">
                             <div class="card-body">
                               <h5 class="card-title">Card title</h5>
@@ -97,7 +102,7 @@
                         </div>
 
                           <div class="col-2">
-                          <div class="card" style="width: 18rem;">
+                          <div class="card w-100" style="width: 18rem;">
                             <img class="card-img-top" src="..." alt="Card image cap">
                             <div class="card-body">
                               <h5 class="card-title">Card title</h5>
@@ -107,7 +112,7 @@
                         </div>
 
                           <div class="col-2">
-                          <div class="card" style="width: 18rem;">
+                          <div class="card w-100" style="width: 18rem;">
                             <img class="card-img-top" src="..." alt="Card image cap">
                             <div class="card-body">
                               <h5 class="card-title">Card title</h5>
@@ -117,7 +122,7 @@
                         </div>
 
                           <div class="col-2">
-                          <div class="card" style="width: 18rem;">
+                          <div class="card w-100" style="width: 18rem;">
                             <img class="card-img-top" src="..." alt="Card image cap">
                             <div class="card-body">
                               <h5 class="card-title">Card title</h5>
@@ -127,6 +132,7 @@
                         </div>
             </div>
         </div>
+      </div>
 
         </div>
 
