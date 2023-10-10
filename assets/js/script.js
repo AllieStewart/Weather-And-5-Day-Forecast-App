@@ -8,7 +8,7 @@ var city = "";
 
 // Check if there is already local storage
 $(window).on("load", function() {
-    
+    getLocalStorage();
 });
 
 // Search button (get rid of console logs later)
@@ -30,13 +30,27 @@ searchButton.on("click", function(event)
 // Store recent searches
 function recentSearchList(city)
 {
+    var liNew = $("<li>");
+    var buttonNew = $("<button>");
 
+    buttonNew.attr('id', 'listBtn');
+    buttonNew.addClass("button search-history-btn");
+    buttonNew.text(city);
+
+    liNew.append(buttonNew);
+    $("#search-history").prepend(liNew);
+
+    $("#listBtn").on("click", function ()
+    {
+        var retrieveCity = $(this).text();
+        currentWeather(retrieveCity);
+    })
 }
 
 // Get current weather/location; needs to retrieve API
-function currentWeather (city)
+function currentWeather(city)
 {
-    var cityURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + api_key;
+    var cityURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + api_key;
     $.ajax(
         {
             url: cityURL,
@@ -67,9 +81,26 @@ function currentWeather (city)
 }
 
 // Get 5-day forecast
-function fiveDayForecast()
+function fiveDayForecast(city)
 {
-
+    var cityURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + api_key;
+    $.ajax(
+        {
+            url: cityURL,
+            method: "GET",
+        }
+    ).then(function(response)
+    {
+        var weatherList = response.list;
+        for (var i = 0; i < weatherList.length; i++)
+        {
+        // var date = ;
+        // var icon = ;
+        // var temp = ;
+        // var wind = ;
+        // var humidity = ;
+        }
+    })
 }
 
 // Get data saved locally
