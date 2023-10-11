@@ -1,7 +1,7 @@
 // Define variables here
 var api_key = "21dd14b3b3fccee814257b2c4c22649e";
 var rightNow = dayjs().format('MMM DD, YYYY');
-var searchButton = $('.search-button');
+var searchButton = $(".search-button");
 var cityNew = document.querySelector("#city-input");
 var city = "";
 //var input = "";
@@ -64,18 +64,20 @@ function currentWeather(city)
     {
         console.log(response);
 
-        $("#city-date-icon").empty();
+        //$("#city-date-icon").empty();
 
-        // var searchedCity = ;
-        // var icon = ;
-        // var temp = ;
-        // var wind = ;
-        // var humidity = ;
+        var searchedCity = $(".city").append(response.name + " ");
+        var date = $(".date").append(rightNow);
+        var icon = $('<img class="imgsize">').attr('src', 'https://openweathermap.org/img/wn/' + response.weather[0].icon + '.png');
+        var temp = $("<p>").text('Temp: ' + response.main.temp + ' °F');
+        var wind = $("<p>").text('Wind: ' + response.wind.speed + ' MPH');
+        var humidity = $("<p>").text('Humidity: ' + response.main.humidity + '%');
 
-        //append searchedCity.date.icon
-        //append temp, wind, humidity underneath
+        //var cityID = response.id;
 
+        searchedCity.append(date).append(icon).append(temp).append(wind).append(humidity);
 
+        $("#city-date-icon").append(searchedCity);
     });
 
 }

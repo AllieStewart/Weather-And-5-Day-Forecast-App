@@ -36,15 +36,13 @@
               <form>
                 <div class="col">
                   <h2>Search for a city:</h2>
-                    <input type="text" class="form-control my-1 p-2" id ="city-input" placeholder="Dallas">
+                    <input type="text" class="form-control my-1 p-2" id ="city-input" placeholder="Type a city...">
                 </div>
               <div class="col-auto my-1 p-2">
                 <button type="search" class="btn search-button btn-primary btn-block">Search</button>
               </div>
-              <p>Search history template</p>
+              <p>Search history:</p>
               <ul id="search-history">
-                <!-- Add class to differentiate from Large city/date/icon bordered box -->
-                <li>Searched cities</li>
               </ul>
               </form>
 
@@ -56,14 +54,13 @@
             <div class="col-12 border border-dark">
                 <div class="row">
                     <ul class="list-inline font-weight-bold" id="city-date-icon">
-                        <li class="list-inline-item city">City</li>
-                        <li class="list-inline-item date">(Date)</li>
-                        <li class="list-inline-item icon">Icon</li>
+                        <li class="list-inline-item city"></li>
+                        <li class="list-inline-item date"></li>
+                        <li class="list-inline-item icon"></li>
                       </ul>
             </div>
-            <p>Temp: </p>
-            <p>Wind: </p>
-            <p>Humidity: </p>
+            <div class="temp-wind-humidity small">
+            </div>
             </div>
         </div>
 
