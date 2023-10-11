@@ -34,7 +34,7 @@ function recentSearchList(city)
     var buttonNew = $("<button>");
 
     buttonNew.attr('id', 'listBtn');
-    buttonNew.addClass("button search-history-btn");
+    buttonNew.addClass("button is-small search-history-btn");
     buttonNew.text(city);
 
     liNew.append(buttonNew);
@@ -55,28 +55,30 @@ function currentWeather(city)
         {
             url: cityURL,
             method: "GET",
-            // error: (
-            //     alert("City not found, please check your spelling.");
-            //     return;
-            // )
+            error: (error => {
+                alert("City not found, please check your spelling.")
+                return;
+        })
         }
     ).then(function (response)
     {
         console.log(response);
-
-        //$("#city-date-icon").empty();
+        $(".city-date-icon").empty();
 
         var searchedCity = $(".city").append(response.name + " ");
-        var date = $(".date").append(rightNow);
+        var date = $(".date").append("(" + rightNow + ")");
         var icon = $('<img class="imgsize">').attr('src', 'https://openweathermap.org/img/wn/' + response.weather[0].icon + '.png');
-        var temp = $("<p>").text('Temp: ' + response.main.temp + ' °F');
-        var wind = $("<p>").text('Wind: ' + response.wind.speed + ' MPH');
-        var humidity = $("<p>").text('Humidity: ' + response.main.humidity + '%');
+        var temp = $("<li>").text('Temp: ' + response.main.temp + ' °F');
+        var wind = $("<li>").text('Wind: ' + response.wind.speed + ' MPH');
+        var humidity = $("<li>").text('Humidity: ' + response.main.humidity + '%');
 
-        //var cityID = response.id;
+        var cityID = response.id;
+
+        fiveDayForecast(cityID);
 
         searchedCity.append(date).append(icon).append(temp).append(wind).append(humidity);
 
+        $("#city-date-icon").empty();
         $("#city-date-icon").append(searchedCity);
     });
 
@@ -122,5 +124,15 @@ function getLocalStorage()
 // Save data locally
 function setLocalStorage(city)
 {
-    localStorage.setItem('cities', city);
+    var info = localStorage.getItem('cities');
+
+    info = city;
+    localStorage.setItem('cities', info);
+
+    if (info.indexOf(city) === -1)
+    {
+        info = info + ',' + city;
+        localStorage.setItem('cities', info);
+        recentSearchList(city);
+    }
 }
