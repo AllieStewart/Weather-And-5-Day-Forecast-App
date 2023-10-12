@@ -1,28 +1,35 @@
+/* Start of CSS file */
+/* Body elements */
 body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+/* Header elements */
 header {
     color: white;
     text-align: right;
     font-size: 200%;
 }
 
+/* Jumbotron ("Weather Dashboard") elements */
 .jumbotron-fluid {
     background-color: rgb(25, 25, 143);
 }
 
+/* "Weather Dashboard" text elements */
 h1 {
     padding-right: 80px;
     font-weight: 600;
     letter-spacing: 5px;
 }
 
+/* "Search for a city:" elements */
 h2 {
     font-size: 200%;
     font-weight: 400;
 }
 
+/* The search history list elements (city names) and "City (Date) Icon" elements */
 ul {
     font-size: 150%;
     word-spacing: 10px;
@@ -30,15 +37,13 @@ ul {
     margin-left: 5px;
 }
 
-#search-history{
-    display:inline-flex;
-}
-
+/* Temp, Wind, Humidity elements */
 p {
     margin: 15px 10px;
     line-height: 1.5;
 }
 
+/* "Search history:" and "5-Day Forecast" elements */
 h3 {
     font-size: 150%;
     font-weight: 400;
@@ -46,13 +51,8 @@ h3 {
     padding: 5px;
 }
 
+/* 'Clear history' button elements */
 .clear-button{
     margin: 5px 5px;
 }
-
-#city-date-icon{
-    display: inline-block;
-}
-
-/* potentially include: */
-/* classes, ids, other selectors, buttons */
+/* End of CSS file */
