@@ -1,29 +1,29 @@
-// Define variables here
-var api_key = "21dd14b3b3fccee814257b2c4c22649e";
-var rightNow = dayjs().format('MMM DD, YYYY');
-var searchButton = $(".search-button");
-var cityNew = document.querySelector("#city-input");
-var city = "";
-//var input = "";
-
 // Check if there is already local storage
 $(window).on("load", function() {
     getLocalStorage();
 });
 
-// Search button (get rid of console logs later)
+// Define variables here
+var api_key = "21dd14b3b3fccee814257b2c4c22649e";
+var rightNow = dayjs().format('MM/DD/YYYY');
+var searchButton = $(".search-button");
+var clearButton = $(".clear-button");
+var cityNew = document.querySelector("#city-input");
+var city = [];
+
+// Search button
 searchButton.on("click", function(event)
 {
     event.preventDefault();
     console.log("Message sent!");
 
-    var city = cityNew.value;
+    city = cityNew.value;
 
     console.log("City: " + city);
 
-    setLocalStorage(city);
-
     currentWeather(city);
+    setLocalStorage(city);
+    recentSearchList(city);
 
 });
 
@@ -45,10 +45,9 @@ function recentSearchList(city)
         event.preventDefault();
 
         var retrieveCity = $(this).text();
-        setLocalStorage(retrieveCity);
+        //setLocalStorage(retrieveCity);
         currentWeather(retrieveCity);
     })
-    // only stores one search at a time, hmmm...
 }
 
 // Get current weather/location; needs to retrieve API
@@ -67,22 +66,20 @@ function currentWeather(city)
     ).then(function (response)
     {
         console.log(response);
-        $(".city-date-icon").empty();
 
-        var searchedCity = $(".city").append(response.name + " ");
+        var searchedCity = $(".city").append($("<h3>" + response.name + " (" + rightNow + ")" + "</h3>"));
         // date repeats when searching new city; fix append, maybe put to city append instead^
-        var date = $(".date").append("(" + rightNow + ")");
+        //var date = $(".date").append("(" + rightNow + ")");
         var icon = $('<img class="imgsize">').attr('src', 'https://openweathermap.org/img/wn/' + response.weather[0].icon + '.png');
-        var temp = $("<li>").text('Temp: ' + response.main.temp + ' °F');
-        var wind = $("<li>").text('Wind: ' + response.wind.speed + ' MPH');
-        var humidity = $("<li>").text('Humidity: ' + response.main.humidity + '%');
+        var temp = $("<p>").text('Temp: ' + response.main.temp + ' °F');
+        var wind = $("<p>").text('Wind: ' + response.wind.speed + ' MPH');
+        var humidity = $("<p>").text('Humidity: ' + response.main.humidity + ' %');
 
         var cityID = response.id;
 
         fiveDayForecast(cityID);
 
-        //fix append(date)
-        searchedCity.append(date).append(icon).append(temp).append(wind).append(humidity);
+        searchedCity.append(icon).append(temp).append(wind).append(humidity);
 
         $("#city-date-icon").empty();
         $("#city-date-icon").append(searchedCity);
@@ -111,11 +108,11 @@ function fiveDayForecast(city)
                 var date = $("<h5>").text(response.list[i].dt_txt.split(" ")[0]);
                 var icon = $('<img>').attr('src', 'http://openweathermap.org/img/w/' + weatherList[i].weather[0].icon + '.png');
                 var temp = $('<p>').text('Temp: ' + weatherList[i].main.temp + ' °F');  
-                var wind = $('<p>').text('Wind: ' + weatherList[i].wind.speed + 'MPH');              
-                var humidity = $('<p>').text('Humidity: ' + weatherList[i].main.humidity + '%');  
+                var wind = $('<p>').text('Wind: ' + weatherList[i].wind.speed + ' MPH');              
+                var humidity = $('<p>').text('Humidity: ' + weatherList[i].main.humidity + ' %');  
 
                 cityMain.append(date).append(icon).append(temp).append(wind).append(humidity);
-                $('#forecast').append(cityMain);
+                $("#forecast").append(cityMain);
             }
         }
     })
@@ -124,10 +121,11 @@ function fiveDayForecast(city)
 // Get data saved locally
 function getLocalStorage()
 {
-    var saved = localStorage.getItem('cities');
+    var saved = localStorage.getItem("cities");
     var saveArr = [];
 
     saved.trim();
+    saveArr.join(saved);
     saveArr = saved.split(',');
     for (var i = 0; i < saveArr.length; i++)
     {
@@ -138,15 +136,26 @@ function getLocalStorage()
 // Save data locally
 function setLocalStorage(city)
 {
-    var info = localStorage.getItem('cities');
+    var info = localStorage.getItem("cities");
+
+    var saveArr = [];
+    saveArr.push(info);
+    localStorage.setItem("cities", JSON.stringify(saveArr));
 
     info = city;
-    localStorage.setItem('cities', info);
+    localStorage.setItem("cities", info);
 
     if (info.indexOf(city) === -1)
     {
         info = info + ',' + city;
-        localStorage.setItem('cities', info);
+        localStorage.setItem("cities", info);
         recentSearchList(city);
     }
 }
+
+// Clear history button; clears local storage AND search history of page.
+clearButton.on("click", function () {
+    localStorage.removeItem("cities");
+    document.querySelector("#search-history").innerHTML = "";
+    console.log("History cleared.");
+  });
