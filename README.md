@@ -26,7 +26,7 @@ same API, with the same attributes. <br />
 
 ## Usage
 Simply click on the link and watch the magic happen. <br />
-Link to the website: https://alliestewart.github.io/challenge-6/ 
+Link to the website: https://alliestewart.github.io/Weather_And_5-Day_Forecast-App/
 
 ## What I Have Learned
 I have learned a lot about local storage and how to utilize it to append a search history, as well <br />
