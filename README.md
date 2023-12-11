@@ -1,4 +1,4 @@
-# Weather_And_5-Day_Forecast-App
+# Weather-And-5-Day-Forecast-App
 
 ## Description
 Challenge 6 coursework for UT bootcamp. <br />
